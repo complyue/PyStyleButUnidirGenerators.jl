@@ -1,0 +1,4 @@
+name = "PyStyleButUnidirGenerators"
+uuid = "c252dbd8-8bbf-46fb-9a76-bd5c14f04c48"
+authors = ["ComplYue <compl.yue@icloud.com>"]
+version = "0.1.0"
