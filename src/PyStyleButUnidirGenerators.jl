@@ -24,12 +24,12 @@ Base.iterate(
   end
   try
     item = yieldto(gt.iteratee, nothing)
-    if item isa StopIteration
+    if item === StopIteration || item isa StopIteration
       return nothing
     end
     return item, nothing
   catch e
-    if !isa(e, StopIteration)
+    if e === StopIteration || !isa(e, StopIteration)
       rethrow()
     end
   end
