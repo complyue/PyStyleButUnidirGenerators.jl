@@ -53,10 +53,15 @@ macro generator(fd)
       $gt!var = $GenTask(current_task(), Task(() -> begin
         try
           @assert current_task() === $gt!var.iteratee
-          $body
-          yieldto($gt!var.iterater, $StopIteration())
+          try
+            $body
+          finally
+            yieldto($gt!var.iterater, $StopIteration())
+          end
         catch e
-          Base.throwto($gt!var.iterater, e)
+          if !istaskdone($gt!var.iterater)
+            Base.throwto($gt!var.iterater, e)
+          end
         end
       end))
       return $gt!var
